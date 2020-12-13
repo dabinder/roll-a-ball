@@ -1,60 +1,57 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
 	public float speed = 0;
-	public TextMeshProUGUI scoreText, livesText;
-	public GameObject winTextObj, loseTextObj, restartTextObj;
-	public Transform spawnPoint;
-	public int maxLives;
 	public Color warningColor;
+	public int maxLives;
 
-	private const int FALL_ZONE = -50;
+	public UnityEvent OnScoreUpdated, OnLivesUpdated;
+
+	private int _score = 0;
+	public int Score {
+		get {
+			return _score;
+		}
+		private set {
+			_score = value;
+			OnScoreUpdated?.Invoke();
+		}
+	}
+
+	private int _lives;
+	public int Lives { 
+		get {
+			return _lives;
+		}
+		private set {
+			_lives = value;
+			if (value == 1) {
+				GetComponent<Renderer>().material.color = warningColor;
+			}
+			OnLivesUpdated?.Invoke();
+		}
+	}
 
 	private Rigidbody _rb;
 	private float _movementX, _movementY;
-	private int _score;
-	private int _maxScore;
-	private int _lives;
-	private bool _gameActive;
 
 	// Start is called before the first frame update
 	private void Start() {
 		_rb = GetComponent<Rigidbody>();
-		_score = 0;
-		_maxScore = GameObject.FindGameObjectsWithTag(Tags.PICKUP).Length;
-		UpdateScore();
-		_lives = maxLives;
-		UpdateLives();
-		winTextObj.SetActive(false);
-		loseTextObj.SetActive(false);
-		restartTextObj.SetActive(false);
-		_gameActive = true;
-		ReSpawn();
+		Lives = maxLives;
 	}
 
 	private void OnMove(InputValue movementValue) {
-		if (_gameActive) {
-			Vector2 movementVector = movementValue.Get<Vector2>();
-			_movementX = movementVector.x;
-			_movementY = movementVector.y;
-		}
-	}
-
-	private void UpdateScore() {
-		scoreText.text = $"Score: {_score} / {_maxScore}";
-		CheckWinCondition();
-	}
-
-	private void UpdateLives() {
-		livesText.text = $"Lives: {_lives}";
+		Vector2 movementVector = movementValue.Get<Vector2>();
+		_movementX = movementVector.x;
+		_movementY = movementVector.y;
 	}
 
 	private void Update() {
-		if (transform.position.y < FALL_ZONE && HasLives()) {
-			Die();
-		}
+		
 	}
 
 	private void FixedUpdate() {
@@ -64,55 +61,20 @@ public class PlayerController : MonoBehaviour {
 	private void OnTriggerEnter(Collider other) {
 		if (other.CompareTag(Tags.PICKUP)) {
 			Destroy(other.gameObject);
-			_score++;
-			UpdateScore();
+			Score++;
 		}
 	}
 
-	private void Die() {
-		_lives--;
-		UpdateLives();
-		if (HasLives()) {
-			ReSpawn();
-		} else {
-			GameOver();
-		}
+	public void Kill() {
+		Lives--;
 	}
 
-	private bool HasLives() {
-		return _lives > 0;
-	}
-
-	private void CheckWinCondition() {
-		if (_score >= _maxScore) {
-			Win();
-		}
-	}
-
-	private void Win() {
-		winTextObj.SetActive(true);
-		StopGame();
-	}
-
-	private void GameOver() {
-		loseTextObj.SetActive(true);
-		StopGame();
+	public void Stop() {
 		_rb.velocity = Vector3.zero;
 		_rb.angularVelocity = Vector3.zero;
 	}
 
-	private void StopGame() {
-		_gameActive = false;
-		restartTextObj.SetActive(true);
-	}
-
-	private void ReSpawn() {
-		transform.position = spawnPoint.transform.position;
-		transform.rotation = spawnPoint.transform.rotation;
-		_rb.velocity = Vector3.zero;
-		_rb.angularVelocity = Vector3.zero;
-		if (_lives == 1) {
-			GetComponent<Renderer>().material.color = warningColor;
-		}
+	public void Freeze() {
+		_rb.constraints = RigidbodyConstraints.FreezeAll;
 	}
 }

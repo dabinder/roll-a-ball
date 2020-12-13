@@ -2050,6 +2050,55 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1321055447}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1397735421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1397735423}
+  - component: {fileID: 1397735422}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1397735422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397735421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 264372bb04fae2c4cb1230a211d36ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 244973150}
+  livesText: {fileID: 157248522}
+  winTextObj: {fileID: 1312561836}
+  loseTextObj: {fileID: 1094243036}
+  restartTextObj: {fileID: 538319421}
+  spawnPoint: {fileID: 1286701355}
+--- !u!4 &1397735423
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397735421}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 300.3459, y: 293.25714, z: -49}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1422650247
 GameObject:
   m_ObjectHideFlags: 0
@@ -2444,14 +2493,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  scoreText: {fileID: 244973150}
-  livesText: {fileID: 157248522}
-  winTextObj: {fileID: 1312561836}
-  loseTextObj: {fileID: 1094243036}
-  restartTextObj: {fileID: 538319421}
-  spawnPoint: {fileID: 1286701355}
-  maxLives: 3
   warningColor: {r: 1, g: 0, b: 0, a: 0}
+  maxLives: 3
+  OnScoreUpdated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1397735422}
+        m_MethodName: UpdateScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnLivesUpdated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1397735422}
+        m_MethodName: UpdateLives
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1695928294
 PrefabInstance:
   m_ObjectHideFlags: 0
