@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour {
 	public float speed = 0;
 	public TextMeshProUGUI scoreText, livesText;
-	public GameObject winTextObj, loseTextObj;
+	public GameObject winTextObj, loseTextObj, restartTextObj;
 	public Transform spawnPoint;
 	public int maxLives;
 	public Color warningColor;
@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
 	private int _score;
 	private int _maxScore;
 	private int _lives;
+	private bool _gameActive;
 
 	// Start is called before the first frame update
 	private void Start() {
@@ -28,20 +29,22 @@ public class PlayerController : MonoBehaviour {
 		UpdateLives();
 		winTextObj.SetActive(false);
 		loseTextObj.SetActive(false);
+		restartTextObj.SetActive(false);
+		_gameActive = true;
 		ReSpawn();
 	}
 
 	private void OnMove(InputValue movementValue) {
-		Vector2 movementVector = movementValue.Get<Vector2>();
-		_movementX = movementVector.x;
-		_movementY = movementVector.y;
+		if (_gameActive) {
+			Vector2 movementVector = movementValue.Get<Vector2>();
+			_movementX = movementVector.x;
+			_movementY = movementVector.y;
+		}
 	}
 
 	private void UpdateScore() {
 		scoreText.text = $"Score: {_score} / {_maxScore}";
-		if (_score >= _maxScore) {
-			winTextObj.SetActive(true);
-		}
+		CheckWinCondition();
 	}
 
 	private void UpdateLives() {
@@ -60,7 +63,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other) {
 		if (other.CompareTag(Tags.PICKUP)) {
-			other.gameObject.SetActive(false);
+			Destroy(other.gameObject);
 			_score++;
 			UpdateScore();
 		}
@@ -80,10 +83,27 @@ public class PlayerController : MonoBehaviour {
 		return _lives > 0;
 	}
 
+	private void CheckWinCondition() {
+		if (_score >= _maxScore) {
+			Win();
+		}
+	}
+
+	private void Win() {
+		winTextObj.SetActive(true);
+		StopGame();
+	}
+
 	private void GameOver() {
 		loseTextObj.SetActive(true);
+		StopGame();
 		_rb.velocity = Vector3.zero;
 		_rb.angularVelocity = Vector3.zero;
+	}
+
+	private void StopGame() {
+		_gameActive = false;
+		restartTextObj.SetActive(true);
 	}
 
 	private void ReSpawn() {
