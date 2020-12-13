@@ -75,10 +75,6 @@ public class GameManager : MonoBehaviour {
 		_player.Freeze();
 	}
 
-	private void SpawnPlayer() {
-		
-	}
-
 	private void ReSpawnPlayer() {
 		_player.transform.position = spawnPoint.transform.position;
 		_player.transform.rotation = spawnPoint.transform.rotation;

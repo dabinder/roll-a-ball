@@ -50,10 +50,6 @@ public class PlayerController : MonoBehaviour {
 		_movementY = movementVector.y;
 	}
 
-	private void Update() {
-		
-	}
-
 	private void FixedUpdate() {
 		_rb.AddForce(new Vector3(_movementX, 0, _movementY) * speed);
 	}
