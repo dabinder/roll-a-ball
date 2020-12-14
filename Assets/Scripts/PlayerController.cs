@@ -45,9 +45,9 @@ public class PlayerController : MonoBehaviour {
 	/// <summary>
 	/// find rigid body for player and set initial variables
 	/// </summary>
-	private void Start() {
+	private void Awake() {
 		_rb = GetComponent<Rigidbody>();
-		Lives = maxLives;
+		_lives = maxLives;
 	}
 
 	/// <summary>

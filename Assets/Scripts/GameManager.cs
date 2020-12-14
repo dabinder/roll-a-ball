@@ -5,6 +5,8 @@ using UnityEngine;
 /// runs the game, spawns the player, and handles win/loss conditions
 /// </summary>
 public class GameManager : MonoBehaviour {
+	private const int FALL_ZONE = -50;
+
 	public TextMeshProUGUI scoreText, livesText;
 	public GameObject winTextObj, loseTextObj, restartTextObj;
 	public Transform spawnPoint;
@@ -13,17 +15,12 @@ public class GameManager : MonoBehaviour {
 	private bool _gameActive;
 	private PlayerController _player;
 
-	private const int FALL_ZONE = -50;
-
 	/// <summary>
 	/// set initial values and start up the game
 	/// </summary>
 	void Start() {
 		_maxScore = GameObject.FindGameObjectsWithTag(Tags.PICKUP).Length;
 		_player = FindObjectOfType<PlayerController>();
-		winTextObj.SetActive(false);
-		loseTextObj.SetActive(false);
-		restartTextObj.SetActive(false);
 		_gameActive = true;
 		UpdateScore();
 		UpdateLives();
