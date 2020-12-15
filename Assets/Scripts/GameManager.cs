@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour {
 		_gameActive = false;
 		_isPaused = true;
 		restartTextObj.SetActive(true);
-		_player.Freeze();
+		Time.timeScale = 0;
 	}
 
 	/// <summary>

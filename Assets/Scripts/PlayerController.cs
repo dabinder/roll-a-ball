@@ -92,11 +92,4 @@ public class PlayerController : MonoBehaviour {
 		_rb.velocity = Vector3.zero;
 		_rb.angularVelocity = Vector3.zero;
 	}
-
-	/// <summary>
-	/// freeze player movement
-	/// </summary>
-	public void Freeze() {
-		_rb.constraints = RigidbodyConstraints.FreezeAll;
-	}
 }
