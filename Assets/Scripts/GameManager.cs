@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// runs the game, spawns the player, and handles win/loss conditions
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour {
 		_gameActive = true;
 		UpdateScore();
 		UpdateLives();
+		Time.timeScale = 1;
 	}
 
 	/// <summary>
@@ -99,7 +101,7 @@ public class GameManager : MonoBehaviour {
 	/// </summary>
 	private void StopGame() {
 		_gameActive = false;
-		_isPaused = false;
+		_isPaused = true;
 		restartTextObj.SetActive(true);
 		_player.Freeze();
 	}
@@ -130,5 +132,14 @@ public class GameManager : MonoBehaviour {
 	private void OnPause() {
 		if (!_gameActive) return;
 		SetPaused(!_isPaused);
+	}
+
+	/// <summary>
+	/// confirm reset after end of game or from pause menu
+	/// </summary>
+	private void OnConfirm() {
+		if (_isPaused) {
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
 	}
 }

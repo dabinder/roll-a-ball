@@ -195,6 +195,17 @@
                 },
                 {
                     "name": "",
+                    "id": "7c82fbb6-dfa9-444c-847c-243189bc854f",
+                    "path": "<Keyboard>/numpadEnter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "deff7f6a-10eb-42c2-bd96-361c5fe240a8",
                     "path": "<Gamepad>/select",
                     "interactions": "",
