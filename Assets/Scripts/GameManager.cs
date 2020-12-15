@@ -8,12 +8,14 @@ public class GameManager : MonoBehaviour {
 	private const int FALL_ZONE = -50;
 
 	public TextMeshProUGUI scoreText, livesText;
-	public GameObject winTextObj, loseTextObj, restartTextObj;
+	public GameObject pausePanel;
+	public GameObject winTextObj, loseTextObj, restartTextObj, pauseTextObj;
 	public Transform spawnPoint;
 
 	private int _maxScore;
 	private bool _gameActive;
 	private PlayerController _player;
+	private bool _isPaused;
 
 	/// <summary>
 	/// set initial values and start up the game
@@ -78,6 +80,7 @@ public class GameManager : MonoBehaviour {
 	/// end game with a victory notification
 	/// </summary>
 	private void Win() {
+		pausePanel.SetActive(true);
 		winTextObj.SetActive(true);
 		StopGame();
 	}
@@ -86,6 +89,7 @@ public class GameManager : MonoBehaviour {
 	/// end game with a game over notification
 	/// </summary>
 	private void GameOver() {
+		pausePanel.SetActive(true);
 		loseTextObj.SetActive(true);
 		StopGame();
 	}
@@ -95,6 +99,7 @@ public class GameManager : MonoBehaviour {
 	/// </summary>
 	private void StopGame() {
 		_gameActive = false;
+		_isPaused = false;
 		restartTextObj.SetActive(true);
 		_player.Freeze();
 	}
@@ -106,5 +111,24 @@ public class GameManager : MonoBehaviour {
 		_player.transform.position = spawnPoint.transform.position;
 		_player.transform.rotation = spawnPoint.transform.rotation;
 		_player.Stop();
+	}
+
+	/// <summary>
+	/// pause or unpause game and bring up reset option
+	/// </summary>
+	/// <param name="paused">pause/unpause status</param>
+	private void SetPaused(bool paused) {
+		_isPaused = paused;
+		Time.timeScale = paused ? 0 : 1;
+		pausePanel.SetActive(paused);
+		pauseTextObj.SetActive(paused);
+	}
+
+	/// <summary>
+	/// handle pause button input
+	/// </summary>
+	private void OnPause() {
+		if (!_gameActive) return;
+		SetPaused(!_isPaused);
 	}
 }
