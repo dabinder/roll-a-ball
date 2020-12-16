@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerController : MonoBehaviour {
 	public float speed = 0;
-	public Color warningColor;
 	public int maxLives;
+	public Color warningColor;
 
 	public UnityEvent OnScoreUpdated, OnLivesUpdated;
 

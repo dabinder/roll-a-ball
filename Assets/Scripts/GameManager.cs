@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 /// runs the game, spawns the player, and handles win/loss conditions
 /// </summary>
 public class GameManager : MonoBehaviour {
-	private const int FALL_ZONE = -50;
+	private const int FALL_ZONE = -25;
 
 	public TextMeshProUGUI scoreText, livesText;
 	public GameObject pausePanel;
