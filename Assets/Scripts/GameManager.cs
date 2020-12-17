@@ -8,10 +8,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 	private const float FALL_ZONE = -25f;
 
-	public TextMeshProUGUI scoreText, livesText;
-	public GameObject pausePanel;
-	public GameObject winTextObj, loseTextObj, restartTextObj, pauseTextObj;
-	public Transform spawnPoint;
+	[SerializeField] private TextMeshProUGUI scoreText, livesText;
+	[SerializeField] private GameObject pausePanel;
+	[SerializeField] private GameObject winTextObj, loseTextObj, restartTextObj, pauseTextObj;
+	[SerializeField] private Transform spawnPoint;
 
 	private int _maxScore;
 	private bool _gameActive;

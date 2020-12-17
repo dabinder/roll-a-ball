@@ -4,7 +4,7 @@
 /// manages camera location
 /// </summary>
 public class CameraController : MonoBehaviour {
-	public GameObject player;
+	[SerializeField] private GameObject player;
 
 	private Vector3 offset;
 

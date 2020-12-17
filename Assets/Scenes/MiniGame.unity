@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 43208129}
   - component: {fileID: 43208128}
   m_Layer: 0
-  m_Name: New Game Object
+  m_Name: Ramp (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -413,8 +413,8 @@ Transform:
   m_LocalPosition: {x: 17.16, y: 11.2, z: 4.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 262915664}
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 279.374, z: 0}
 --- !u!1 &80270904
 GameObject:
@@ -814,12 +814,12 @@ PrefabInstance:
     - target: {fileID: 8700088672516230851, guid: a1cc9e4651def624c81ddbe550f14777,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8700088672516230851, guid: a1cc9e4651def624c81ddbe550f14777,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.21
+      value: 0.46
       objectReference: {fileID: 0}
     - target: {fileID: 8700088672516230851, guid: a1cc9e4651def624c81ddbe550f14777,
         type: 3}
@@ -829,7 +829,7 @@ PrefabInstance:
     - target: {fileID: 8700088672516230851, guid: a1cc9e4651def624c81ddbe550f14777,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.54
+      value: -11.33
       objectReference: {fileID: 0}
     - target: {fileID: 8700088672516230851, guid: a1cc9e4651def624c81ddbe550f14777,
         type: 3}
@@ -1191,6 +1191,7 @@ Transform:
   - {fileID: 423541535}
   - {fileID: 154988376}
   - {fileID: 761123154}
+  - {fileID: 43208133}
   - {fileID: 1903368509}
   - {fileID: 197458299}
   m_Father: {fileID: 0}
@@ -4202,7 +4203,7 @@ PrefabInstance:
     - target: {fileID: 8700088672516230851, guid: a1cc9e4651def624c81ddbe550f14777,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8700088672516230851, guid: a1cc9e4651def624c81ddbe550f14777,
         type: 3}

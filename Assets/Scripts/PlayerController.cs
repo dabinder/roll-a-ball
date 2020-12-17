@@ -6,11 +6,11 @@ using UnityEngine.InputSystem;
 /// manages player actions
 /// </summary>
 public class PlayerController : MonoBehaviour {
-	public float speed = 0;
-	public int maxLives;
-	public Color warningColor;
+	[SerializeField] private float speed = 0;
+	[SerializeField] private int maxLives;
+	[SerializeField] private Color warningColor;
 
-	public UnityEvent OnScoreUpdated, OnLivesUpdated;
+	[SerializeField] private UnityEvent OnScoreUpdated, OnLivesUpdated;
 
 	private int _score = 0;
 	/// <summary>
