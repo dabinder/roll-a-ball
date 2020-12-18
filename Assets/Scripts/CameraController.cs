@@ -6,19 +6,19 @@
 public class CameraController : MonoBehaviour {
 	[SerializeField] private GameObject player;
 
-	private Vector3 offset;
+	private Vector3 _offset;
 
 	/// <summary>
 	/// start camera a fixed distance behind player
 	/// </summary>
 	void Start() {
-		offset = transform.position - player.transform.position;
+		_offset = transform.position - player.transform.position;
 	}
 
 	/// <summary>
 	/// maintain fixed camera distance
 	/// </summary>
 	void LateUpdate() {
-		transform.position = player.transform.position + offset;
+		transform.position = player.transform.position + _offset;
 	}
 }
